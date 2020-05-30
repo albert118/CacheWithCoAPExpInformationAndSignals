@@ -23,7 +23,6 @@ try:
     req.destination = (host, port)
 
     response = clientHelper.send_request(req)
-    # response = clientHelper.get(path)
 
     print(response)         # print the entire response.
     print(response.payload) # print the payload attribute.

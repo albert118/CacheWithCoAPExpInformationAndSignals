@@ -59,7 +59,7 @@ def main():  # pragma: no cover
     ProxyServer_address = ("127.0.0.1", 5683)
 
     multicast    = False
-    cache        = False
+    cache        = True
     starting_mid = False
     xml_file = "reverse_proxy.xml"
 
@@ -80,16 +80,17 @@ def main():  # pragma: no cover
         server_thread1.start()
         server_thread2.start()
         server_thread3.start()
+
         ProxyServer_thread.start()
 
     except KeyboardInterrupt:
         shutdown(server1)
-        server_thread1.join(timeout=25)
+        server_thread1.join(timeout=10)
         shutdown(server2)
-        server_thread2.join(timeout=25)
+        server_thread2.join(timeout=10)
         shutdown(server3)
-        server_thread3.join(timeout=25)
+        server_thread3.join(timeout=10)
         shutdown(ProxyServer)
-        ProxyServer_thread.join(timeout=25)
+        ProxyServer_thread.join(timeout=10)
 
 main()
