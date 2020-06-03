@@ -2,9 +2,15 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.pyc
 # C extensions
 *.so
+
+# VScode
+.vscode/*
+
+# Custom Python27 environ
+Py27Test/*
 
 # Distribution / packaging
 .Python
