@@ -14,11 +14,59 @@ def shutdown(server):
     print("Exiting...")
 
 # dummy resource for testing.
+class TestResource(Resource):
+    def __init__(self, name="TestResource", coap_server=None):
+        super(TestResource, self).__init__(name, coap_server, visible=True,
+                                            observable=True, allow_children=True)
+        self.payload = "A test resource"
+        self.resource_type = "rt1"
+        self.content_type = "text/plain"
+        self.interface_type = "if1"
+
+    def render_GET(self, request):
+        return self
+
+    def render_PUT(self, request):
+        self.edit_resource(request)
+        return self
+
+    def render_POST(self, request):
+        res = self.init_resource(request, TestResource())
+        return res
+
+    def render_DELETE(self, request):
+        return True
+
+ # dummy resource for testing.
+class AnotherTestResource(Resource):
+    def __init__(self, name="AnotherTestResource", coap_server=None):
+        super(AnotherTestResource, self).__init__(name, coap_server, visible=True,
+                                            observable=True, allow_children=True)
+        self.payload = "Another test resource"
+        self.resource_type = "rt1"
+        self.content_type = "text/plain"
+        self.interface_type = "if1"
+
+    def render_GET(self, request):
+        return self
+
+    def render_PUT(self, request):
+        self.edit_resource(request)
+        return self
+
+    def render_POST(self, request):
+        res = self.init_resource(request, AnotherTestResource())
+        return res
+
+    def render_DELETE(self, request):
+        return True
+
+ # dummy resource for testing.
 class BasicResource(Resource):
-    def __init__(self, name="BasicResource", coap_server=None):
+    def __init__(self, name="AnotherTestResource", coap_server=None):
         super(BasicResource, self).__init__(name, coap_server, visible=True,
                                             observable=True, allow_children=True)
-        self.payload = "TEST TEST TEST TEST TEST"
+        self.payload = "A basic test resource"
         self.resource_type = "rt1"
         self.content_type = "text/plain"
         self.interface_type = "if1"
